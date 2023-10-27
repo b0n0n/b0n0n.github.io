@@ -51,18 +51,18 @@
 
     <script>
         const dvd = document.getElementById('dvd');
-        let x = Math.random() * (window.innerWidth - dvd.offsetWidth);
-        let y = Math.random() * (window.innerHeight - dvd.offsetHeight);
+        let x = Math.random() * (window.innerWidth - dvd.offsetWidth) + dvd.offsetWidth/2;
+        let y = Math.random() * (window.innerHeight - dvd.offsetHeight) + dvd.offsetHeight/2;
         let xSpeed = 3;
         let ySpeed = 3;
 
         function animate() {
-            if (x + dvd.offsetWidth/2 >= window.innerWidth || x - dvd.offsetWidth/2 <= 0) {
+            if (x + dvd.offsetWidth/2 > window.innerWidth || x - dvd.offsetWidth/2 < 0) {
                 xSpeed = -xSpeed;
                 dvd.style.backgroundColor = getRandomColor();
             }
 
-            if (y + dvd.offsetHeight/2 >= window.innerHeight || y - dvd.offsetHeight/2 <= 0) {
+            if (y + dvd.offsetHeight/2 > window.innerHeight || y - dvd.offsetHeight/2 < 0) {
                 ySpeed = -ySpeed;
                 dvd.style.backgroundColor = getRandomColor();
             }
