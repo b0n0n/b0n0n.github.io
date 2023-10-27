@@ -1,1 +1,92 @@
-Hello World
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sparrow Zone</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            font-family: 'Arial', sans-serif;
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #dvd {
+            width: 200px;
+            height: 200px;
+            background-image: url('logo.png'); /* Add this line */
+            background-size: cover; /* This ensures the image covers the entire button */
+            background-repeat: no-repeat; /* This ensures the image doesn't repeat */
+            background-position: center; /* This centers the image */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="https://garden.sparrow.zone" target="_blank">
+        <div id="dvd"></div>
+    </a>
+
+    <script>
+        const dvd = document.getElementById('dvd');
+        let x = Math.random() * (window.innerWidth - dvd.offsetWidth);
+        let y = Math.random() * (window.innerHeight - dvd.offsetHeight);
+        let xSpeed = 3;
+        let ySpeed = 3;
+
+        function animate() {
+            if (x + dvd.offsetWidth/2 >= window.innerWidth || x - dvd.offsetWidth/2 <= 0) {
+                xSpeed = -xSpeed;
+                dvd.style.backgroundColor = getRandomColor();
+            }
+
+            if (y + dvd.offsetHeight/2 >= window.innerHeight || y - dvd.offsetHeight/2 <= 0) {
+                ySpeed = -ySpeed;
+                dvd.style.backgroundColor = getRandomColor();
+            }
+
+            x += xSpeed;
+            y += ySpeed;
+
+            dvd.style.left = x + 'px';
+            dvd.style.top = y + 'px';
+
+            requestAnimationFrame(animate);
+        }
+
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        animate();
+    </script>
+</body>
+
+</html>
